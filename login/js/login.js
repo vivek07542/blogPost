@@ -50,7 +50,7 @@ function verificationOfUser() {
             localStorage.setItem("loggedInUser",JSON.stringify(selectedUser)); 
             textIfFail.style.display = "none";
             loadingStartAndStop();
-            setTimeout(function(){ document.location.href = "posts.html";}, 3000);  
+            setTimeout(function(){ document.location.href = "../../posts.html";}, 3000);  
             
             break;
         }
