@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog-Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse container" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" id="clickPostEvent" aria-haspopup="true" aria-expanded="false" onclick="clickPostEvent()"><i class="fa fa-comments" aria-hidden="true" ></i> Posts</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle" aria-hidden="true"></i> <span id="userFullName"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" id="dropdownUserProfile" onclick="dropdownProfile()">Profile</a>
+                                <a class="dropdown-item" id="dropdownUserSignOut">SignOut</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="row" id="postContentDisplay">
+        <a class="tablink col" id="pendingPost" onclick="openPage('London', this, 'rgba(0,0,0,0.2)');pendingPost()"><span
+                class="tabText">Pending Post</span></a>
+        <a class="tablink col" id="allPost" onclick="openPage('Paris', this, 'rgba(0,0,0,0.3)');allPost()"><span
+                class="tabText">All Post</span></a>
+        <a class="tablink col" id="promotionalPost" onclick="openPage('Tokyo', this, 'rgba(0,0,0,0.2)');promotionalPost()"><span
+                class="tabText">Promotional Post</span></a>
+    </div>
+    <div id="box">
+        <div id="London" class="tabcontent">
+            <div class="container" id="pendingPostContainer">
+                <div>
+                    <button class="btn btn-primary float-right" id="createNewPostBtn1"
+                        onclick="PopupClickEvent()">Create Post</button>
+                </div>
+                <div class="sorting" id="sorting1">
+                    <button class="sortButton" id="upSort1"><i class="fa fa-sort" aria-hidden="true"></i> Sort By
+                        Date</button>
+                </div>
+                <h4 class="display-3 text-center heading">Pending Post</h4>
+                <div class="list" id="postDisplayDivDynamicallyForApproval"></div>
+                <div class="pageNumbers" id="pagination"></div>
+            </div>
+        </div>
+        <div id="Paris" class="tabcontent">
+            <div class="container">
+                <div>
+                    <button class="btn btn-primary float-right" id="createNewPostBtn2"
+                        onclick="PopupClickEvent()">Create Post</button>
+                </div>
+                <div class="sorting" id="sorting2">
+                    <button class="sortButton" id="upSort2"><i class="fa fa-sort" aria-hidden="true"></i> Sort By
+                        Date</button>
+                </div>
+                <h4 class="display-3 text-center heading">All Post</h4>
+                <div id="postDisplayDivDynamically"></div>
+                <div class="pageNumbers" id="pagination1"></div>
+            </div>
+        </div>
+        <div id="Tokyo" class="tabcontent">
+            <div class="container">
+                <div>
+                    <button class="btn btn-primary float-right createNewPostBtn" onclick="PopupClickEvent()">Admin
+                        Create Post</button>
+                </div>
+                <div class="sorting" id="sorting3">
+                    <button class="sortButton" id="upSort3"><i class="fa fa-sort" aria-hidden="true"></i> Sort By Date
+                    </button>
+                </div>
+                <h4 class="display-3 text-center heading">Admin Post</h4>
+                <div id="postDisplayDivForAdmin"></div>
+                <div class="pageNumbers" id="pagination2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="markContainer " id="markContainer">
+        <div class="markContent" id="markContent">
+            <div class="close" id="closeDynamic">+</div>
+            <div class="jumbotron text-center my-5" id="createPostPopup">
+                <h3 class="display-5 float-left my-1">Create Post</h3>
+                <div class="form-group">
+                    <form>
+                        <textarea class="form-control" id="userTextPost" name="message" placeholder="Write Post..."
+                            rows="3" onkeyup="limitText(this.form.message,this.form.outputText,500)"></textarea>
+                        <br>You have
+                        <input readonly type="text" name="outputText" size="3" value="500"> chars left<br>
+                    </form>
+                </div>
+                <button class="btn btn-primary submitButton" id="userCreatePostBtn" onclick="createPost()">Post</button>
+            </div>
+            <div class="jumbotron text-center my-5" id="selectUserPopup">
+                <h3 class="display-5 my-1">Select User</h3>
+                <div class="form-group" id="createUserForPost"></div>
+                <button class="btn btn-primary" id="userSelectedBtn" onclick="userSelectedBtn()">Share Post</button>
+            </div>
+        </div>
+    </div>
+    <div class="loading" id="loadingDiv">
+        <div class=loadingBox>
+            <img src="../images/load-img.gif" alt="pageLoading" class="image_gif">
+        </div>
+    </div>
+    <script src="post/js/posts.js"></script>
+    <script src="js/common.js"></script>
+    <!-- <script src="../trial.js"></script> -->
+    <!-- <script src="js/userProfile.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

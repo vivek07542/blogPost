@@ -1,0 +1,293 @@
+body{
+    margin:0;
+    padding:0;
+    /* background-color: rgb(190,177,250); */
+  background-image: url("../images/image-3.jpg");
+  background-color: #cccccc;
+  height: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  font-family:sans-serif;    
+}   
+.jumbotron{
+    background-color: #f5f5f5; 
+    width:95%;   
+    margin:0 auto;
+    box-shadow:  8px 16px 0px rgba(0,0,0,0.2);
+}
+.validateRedBorder{
+    border:1px solid red;
+}
+.validateGreenBorder{
+    border:1px solid green;
+}
+.textIfFail{
+    display:none;
+}
+#verticalTab{
+    height:auto;  
+    /* display:none;  */
+    background-color: transparent;
+}
+
+#leftSideDiv{
+    background-color: transparent;
+    border:none;   
+    padding-left: 30px;
+    padding-top:43px;
+}
+.markContainer{
+    width:100vw;
+    min-height:700px;
+    height:90vw;
+    /* overflow-y:inherit; */
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    top:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 100;
+  }
+  .markContent{
+    width:800px;  
+    min-height:300px;
+    height:auto;
+    background-color: white;
+    border-radius: 4px;
+    padding:20px;
+    text-align: center;  
+    position: relative;
+    padding-bottom:60px;
+    font-size: 14px;
+  }
+  .close{
+    transform: rotate(45deg);
+  }  
+  #createPostPopup{
+      display:none;      
+  }
+  .divSelUser{
+    width:80%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;  
+    padding:0 10px;  
+  }
+  #selectUserPopup{
+    display:none;
+  }
+  #createUserForPost{
+    column-count: 3;
+    column-fill: auto;
+    min-height: 40px;
+    /* margin:0px; */
+  }  
+  .postDiv{
+    border:1px solid grey;
+    width:60%;
+    border-radius:7px;
+    margin:15px auto;
+    background-color: white;
+    box-shadow :0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  }
+.userPostDetail{
+  margin:15px 15px 15px 45px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  /* margin:15px 0; */
+  align-items: center;
+  font-size: 13px;
+  font-weight: 550;
+  color:rgba(0,0,0,0.6);
+}
+.localStoragePost{
+  margin:10px 0;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 550;
+  /* color:rgba(0,0,0,0.9); */
+  position: relative;
+}
+.seeMoreBtn{
+  position: absolute;
+  right:20px;
+  bottom:0;
+  font-size: 13px;
+  font-weight: 400;
+  color:rgba(0,0,0,0.4)
+}
+.postText{
+  width:75%;
+  min-height: 30px;  
+  margin:0 45px;
+  /* border:1px solid red; */
+}
+
+/* Style tab links */
+.tablink {
+  background-color:rgb(248,249,250);
+  /* color:white; */
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 33.33%;
+  text-align: center;
+}
+.tablink:hover {
+  background-color: #ddd;
+}
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 100px 20px;
+  height:auto;
+}
+/* #Home {background-color: red;} */
+ #London {
+   background-color: rgba(0,0,0,0.2);
+   /* opacity:0.3; */
+}
+#Paris {background-color:rgba(0,0,0,0.2);}
+#Tokyo {background-color:rgba(0,0,0,0.2);} 
+
+/* #postContentDisplay{
+  display:block;
+} */
+
+#promotionalPost{
+  display: none;
+}
+.heading{
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+}
+/* .tabText{
+  color:rgb(124,124,125)
+} */
+.tabText:hover{
+  color:rgba(0,0,0,0.7);
+}
+/* CSS For Progress bar */
+.loading{
+  width:100vw;
+  /* min-height:700px; */
+  min-height:90vw;
+  /* max-height:auto; */
+  /* overflow-y:inherit; */
+  height:auto;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  top:0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  z-index: 100;
+}
+.loadingBox{
+  width:800px;  
+  /* min-height:150px; */
+  max-height:auto;
+  background-color:transparent;
+  border-radius: 4px;
+  padding:20px;
+  text-align: center;  
+  position: relative;
+  padding-bottom:60px;
+  font-size: 14px;
+}
+.image_gif{
+  width:250px;
+  height:auto;
+}
+
+.pageNumbers{
+display:flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+align-items: right;
+padding-right:100px;
+}
+.pageNumbers button{
+  width:50px;
+  height:50px;
+  border-radius:5px;
+  appearance: none;
+  border:none;
+  cursor: pointer;
+  outline: none;
+  background-color: #44AAEE;
+  margin:5px;
+  transition: 0.4s;
+  color:#f5f5f5;
+  font-size: 16px;
+  text-shadow: 0 0 4px rgba(0,0,0,0.2);
+  box-shadow:0 0 4px rgba(0,0,0,0.2);
+}
+.pageNumbers button:hover{
+  background-color: #44EEAA;  
+}
+.pageNumbers button.active{
+  background-color: #44EEAA;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+}
+.select{
+  width:175px;
+  height:50px;
+  margin:5px;
+  font-size:14px;
+  border-radius: 5px;
+}
+.sorting{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: right;
+  padding-right:100px;
+  }
+  .sorting button{
+    width:130px;
+    height:30px;
+    appearance: none;
+    border:none;
+    cursor: pointer;
+    outline: none;
+    background-color: #44AAEE;
+    margin:5px;
+    transition: 0.5s;
+    color:#f5f5f5;
+    font-size: 16px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.2);
+    box-shadow:0 0 4px rgba(0,0,0,0.2);
+  }
+  .sorting button:hover{
+    background-color: #44EEAA;  
+  }
+    .headerSortButton{
+      width:20px;
+      height:24px;
+      appearance: none;
+      border:none;
+      cursor: pointer;
+      outline: none;
+      background-color: #44AAEE;
+      margin:5px;
+      transition: 0.4s;
+      color:#f5f5f5;
+      font-size: 16px;
+      text-shadow: 0 0 4px rgba(0,0,0,0.2);
+      box-shadow:0 0 4px rgba(0,0,0,0.2);
+      align-items: center;
+    }
+    .headerSortButton:hover{
+      background-color: #44EEAA;  
+     }

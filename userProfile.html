@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog-Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse container" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" id="clickPostEvent" aria-haspopup="true" aria-expanded="false" onclick="clickPostEvent()"><i class="fa fa-comments" aria-hidden="true" ></i> Posts</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle" aria-hidden="true"></i> <span id="userFullName"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" id="dropdownUserProfile" onclick="dropdownProfile()">Profile</a>
+                                <a class="dropdown-item" id="dropdownUserSignOut">SignOut</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </nav>   
+    <div class="row" id="verticalTab">
+        <div class="col-2 form-control sideBar" id="leftSideDiv">
+            <div class="list-group row" id="list-tab" role="tablist">
+                <a class=" col-12 my-2 text-center list-group-item list-group-item-action form-control active" id="myProfileTab"
+                    data-toggle="list" href="#list-home" role="tab" onclick="editValueToProfile()">My Profile</a>
+                <a class=" col-12 my-2 text-center list-group-item list-group-item-action form-control" id="userForAdminTab" data-toggle="list"
+                    href="#list-profile" onclick="userForAdminTab()" role="tab">Users</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                    <div class="jumbotron text-center my-5" id="myprofileDiv1">
+                        <div class="form-group row justify-content-across">
+                            <label class="col-sm-2 font-weight-bold">UserName:</label>
+                            <div class="col-sm-4">
+                                <p class="UserInfoFromLocalStorage"></p>
+                            </div>
+                            <label class="col-sm-2 font-weight-bold">Password:</label>
+                            <div class="col-sm-4">
+                                <p class="UserInfoFromLocalStorage"></p>
+                            </div>
+                            <label class="col-sm-2 font-weight-bold">Role:</label>
+                            <div class="col-sm-4">
+                                <p class="UserInfoFromLocalStorage"></p>
+                            </div>
+                            <label class="col-sm-2 font-weight-bold">First Name:</label>
+                            <div class="col-sm-4">
+                                <p class="UserInfoFromLocalStorage"></p>
+                            </div>
+                            <label class="col-sm-2 font-weight-bold">Last Name:</label>
+                            <div class="col-sm-4">
+                                <p class="UserInfoFromLocalStorage"></p>
+                            </div>
+                            <label class="col-sm-2 font-weight-bold">Mobile No.:</label>
+                            <div class="col-sm-4">
+                                <p class="UserInfoFromLocalStorage"></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="editProfileBtn" onclick="editProfileBtn()">Edit</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div class="jumbotron text-center my-5" id="myprofileDiv2">
+                        <div>
+                            <button class="btn btn-primary my-4 float-right" id="createNewUserBtn" onclick="createNewUserBtn()">Create User</button>
+                        </div>
+                        <div id="tableBox row">
+                            <h3 class="display-7 col-12">Users Detail</h3>
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped" id="tblData"></table>
+                            </div>
+
+                            <div class="pageNumbers col-12" id="pagination3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="markContainer " id="markContainer">
+        <div class="markContent" id="markContent">
+            <div class="close" id="closeDynamic">+</div>
+            <div class="jumbotron text-center my-5" id="myProfileDiv">
+                <div class="form-group row justify-content-across">
+                    <label class="col-sm-2 font-weight-bold py-1">UserName:</label>
+                    <div class="col-sm-4 py-1">
+                        <input class="createUserInputData form-control">
+                        <small class="form-text text-muted textIfFail" id="textIfFailForPopupCreate">User Already Exist..</small>
+                    </div>
+                    <label class="col-sm-2 font-weight-bold py-1">Password:</label>
+                    <div class="col-sm-4 py-1">
+                        <input class="createUserInputData form-control">
+                    </div>
+                    <label class="col-sm-2 font-weight-bold py-1">Role:</label>
+                    <div class="col-sm-4 py-1">
+                        <select class="createUserInputData form-control">
+                            <option>admin</option>
+                            <option>user</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 font-weight-bold py-1">First Name:</label>
+                    <div class="col-sm-4 py-1">
+                        <input class="createUserInputData form-control">
+                    </div>
+                    <label class="col-sm-2 font-weight-bold py-1">Last Name:</label>
+                    <div class="col-sm-4 py-1">
+                        <input class="createUserInputData form-control">
+                    </div>
+                    <label class="col-sm-2 font-weight-bold py-1">Mobile No.:</label>
+                    <div class="col-sm-4 py-1">
+                        <input class="createUserInputData form-control">
+                    </div>
+                </div>
+                <button class="btn btn-primary submitButton" id="createdUserDetailSubmitBtn" onclick="createdUserDetailSubmitBtn()">Submit</button>
+            </div>        
+        </div>
+    </div>
+    <div class="loading" id="loadingDiv">
+        <div class=loadingBox>
+            <img src="../images/load-img.gif" alt="pageLoading" class="image_gif">
+        </div>
+    </div>
+    <script src="userProfile/js/userProfile.js"></script>
+    <script src="js/common.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        <script type=text/javascript >
+//         function clickPostEvent() {
+//            document.location.href = "posts.html" ;    
+// }
+        </script>
+</body>
+
+</html>
