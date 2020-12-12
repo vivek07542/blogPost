@@ -7,7 +7,7 @@ userFullName.innerText = loggedInUser.firstname + " " + loggedInUser.lastname;
 let dropdownUserSignOut = document.getElementById("dropdownUserSignOut");
 dropdownUserSignOut.addEventListener("click", function () {
     if (confirm("Do you want to Signout?")) {
-        document.location.href = "../index.html";
+        document.location.href = "index.html";
     }
 });
 // PopUp Close Button Click event
@@ -16,11 +16,11 @@ closeDynamic.addEventListener("click", function () {
 });
 // Function For Profile Click Button on Nav Bar
 function dropdownProfile() {
-    setTimeout(function () { document.location.href = "../userProfile.html"; }, 3000);
+    setTimeout(function () { document.location.href = "userProfile.html"; }, 3000);
 }
 // Click Post on Navbar Click Event
 function clickPostEvent() {
-    setTimeout(function () { document.location.href = "../posts.html"; }, 3000);
+    setTimeout(function () { document.location.href = "posts.html"; }, 3000);
 }
 // Sort Function for Post Date Vise...
 function sortArrayBy(array, sort, desc) {
