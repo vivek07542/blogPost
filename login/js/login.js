@@ -65,8 +65,8 @@ function loadingWait(){
    } 
 
 function loadingStartAndStop(){
-    setTimeout(loadingWait, 1000)
-    setTimeout(stopLoadWait,3000)
+    setTimeout(loadingWait, 0010);
+    setTimeout(stopLoadWait,3000);
 }
    function stopLoadWait(){
     let loadingDiv=document.getElementById("loadingDiv");      
