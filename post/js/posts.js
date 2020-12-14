@@ -11,8 +11,19 @@ function createPost() {
     if (validateUserPost(userTextPost)) {
         createPostArrayObjectCreate();
         resetPost();
+        allPost();
+        pendingPost();
+        promotionalPost();
     }
 }
+// PopUp Close Button Click event
+closeDynamic.addEventListener("click", function () {
+    markContainer.style.display = "none";
+    resetPost();
+    allPost();
+    pendingPost();
+    promotionalPost();
+});
 // Validation for Create Post
 function validateUserPost(userTextPost) {
     let isAllValidationPassed = true;
@@ -62,6 +73,8 @@ function createPostArrayObjectCreate() {
 function resetPost() {
     userTextPost.value = "";
     markContainer.style.display = "none";
+    userTextPost.classList.remove("validateGreenBorder")
+    document.getElementById("outputText").value = 500;    
 }
 window.addEventListener('load', 
   function() { 
@@ -75,7 +88,6 @@ window.addEventListener('load',
     }
     document.getElementById("postContentDisplay").style.display = "block";
   }, false);
-
 // All Post Click Event
 function allPost() {    
     let postDisplayDivDynamically = document.getElementById("postDisplayDivDynamically");

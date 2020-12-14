@@ -10,10 +10,6 @@ dropdownUserSignOut.addEventListener("click", function () {
         document.location.href = "index.html";
     }
 });
-// PopUp Close Button Click event
-closeDynamic.addEventListener("click", function () {
-    markContainer.style.display = "none";
-});
 // Function For Profile Click Button on Nav Bar
 function dropdownProfile() {
     setTimeout(function () { document.location.href = "userProfile.html"; }, 3000);
@@ -33,7 +29,7 @@ function sortArrayBy(array, sort, desc) {
     return array;
 }
 // Conditions to use selected post and recreate the post as per Pending Post,All Post & Promotional Post
-// function allPostClick(div, approval) {
+
 function allPostClick(div, approval) {
     debugger;
     let postArray = JSON.parse(localStorage.getItem("userPosts"));
@@ -50,7 +46,6 @@ function allPostClick(div, approval) {
                     if (e.approved === false) {
                         pendingPostArray.push(e);
                         localStorage.setItem("postForPending", JSON.stringify(pendingPostArray));
-
                     }
                 }
                 // Condition For all post
@@ -204,6 +199,8 @@ function chkBoxSelect(adminApprovalCheckBox) {
             markContainer.style.display = "flex";
             selectUserPopup.style.display = "block";
             // myProfileDiv.style.display = "none";
+            let createUserForPost = document.getElementById("createUserForPost");
+            createUserForPost.innerHTML = "";
             let postArray = JSON.parse(localStorage.getItem("objectDetailUser"));
             postArray.forEach(function (e) {
                 if (e.role !== "admin") {
@@ -239,7 +236,8 @@ function userSelectedBtn() {
             postForSelectedUserArray.push(selCheckBox[i].nextSibling.innerText);
         }
     }
-    appendArrayToLocalStorage(postForSelectedUserArray);
+    appendArrayToLocalStorage(postForSelectedUserArray);   
+    pendingPost();
 }
 // To set the user to sharePost of selected post to local Storage
 function appendArrayToLocalStorage(postForSelectedUserArray) {
@@ -262,19 +260,21 @@ function appendArrayToLocalStorage(postForSelectedUserArray) {
 }
 // Setup for Pagination 
 function setupPagination(items, wrapper, rowsperpage, currentpage, paginationWrapper, approval) {
+    debugger;
     wrapper.innerHTML = "";
     let pagecount = Math.ceil(items.length / rowsperpage);
     let selectPageRow = createTableElements(wrapper, "select", "select", null, null, null, null);
-    let option0 = createTableElements(selectPageRow, "option", null, null, null, "Please Select Post Size", null);
-    option0.setAttribute("selected", "selected");
+    let option0 = createTableElements(selectPageRow, "option", null, null, null, "Please Select Page Size", null);
+    // option0.setAttribute("selected", "selected");
     option0.disabled = true;
     let option1 = createTableElements(selectPageRow, "option", null, null, null, 5, null);
-    option1.value = 5;
+    option1.value = 5;    
     let option2 = createTableElements(selectPageRow, "option", null, null, null, 10, null);
     option2.value = 10;
     let option3 = createTableElements(selectPageRow, "option", null, null, null, 20, null);
     option3.value = 20;
     selectPageRow.addEventListener("change", function () {
+        debugger;
         allOption = selectPageRow.querySelectorAll("option");
         let rowsPerPage = selectPageRow.value;
         for (i = 0; i < allOption.length; i++) {
@@ -282,11 +282,20 @@ function setupPagination(items, wrapper, rowsperpage, currentpage, paginationWra
                 allOption[i].setAttribute("selected", "selected");
             }
             break;
-        }
+        }        
         rowsperpage = rowsPerPage;
         displayList(items, paginationWrapper, rowsperpage, currentpage, approval);
         setupPagination(items, wrapper, rowsperpage, currentpage, paginationWrapper, approval)
     });
+    if(selectPageRow !== null){
+        allOption = selectPageRow.querySelectorAll("option");
+        // let rowsPerPage = selectPageRow.value;
+        for (i = 0; i < allOption.length; i++) {
+            if (rowsperpage == allOption[i].value) {
+                allOption[i].setAttribute("selected", "selected");
+            }
+        }    
+    }
     let firstBtn = createTableElements(wrapper, "button", "pageButton", null, null, "First", true);
     firstBtn.addEventListener("click", function () {
         currentpage = 1;

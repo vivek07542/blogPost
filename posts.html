@@ -100,7 +100,7 @@
                         <textarea class="form-control" id="userTextPost" name="message" placeholder="Write Post..."
                             rows="3" onkeyup="limitText(this.form.message,this.form.outputText,500)"></textarea>
                         <br>You have
-                        <input readonly type="text" name="outputText" size="3" value="500"> chars left<br>
+                        <input readonly type="text" id="outputText" name="outputText" size="3" value="500"> chars left<br>
                     </form>
                 </div>
                 <button class="btn btn-primary submitButton" id="userCreatePostBtn" onclick="createPost()">Post</button>

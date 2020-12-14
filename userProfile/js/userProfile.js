@@ -72,7 +72,13 @@ function editProfileBtn() {
         profileUserValuePlacing[1].innerHTML = passwordValue;
         profileUserValuePlacing[2].innerHTML = profileUserValuePlacing[2].innerHTML;
         for (i = 3; i < profileUserValuePlacing.length; i++) {
-            let htmlInput = `<input class="form-control textinput" name="textinput" value="${profileUserValuePlacing[i].innerHTML}" />`;
+            let htmlInput = "" ;// let htmlInput = `<input class="form-control textinput" name="textinput" value="${profileUserValuePlacing[i].innerHTML}" />`;
+           if(i === 5){
+             htmlInput = `<input class="form-control textinput" name="textinput" type="number" value="${profileUserValuePlacing[i].innerHTML}" />`;  
+           }
+           else{
+             htmlInput = `<input class="form-control textinput" name="textinput" value="${profileUserValuePlacing[i].innerHTML}" />`;
+           }
             profileUserValuePlacing[i].innerHTML = htmlInput;
         }
     }
@@ -196,6 +202,7 @@ function createdUserDetailSubmitBtn() {
     if (validation(newUserInputValue)) {
         createUser(newUserInputValue);
         resetValue(newUserInputValue);
+        userForAdminTab();
     };
 }
 // Create User Function
@@ -218,11 +225,11 @@ function createUser(newUserInputValue) {
     localStorage.setItem("objectDetailUser", JSON.stringify(userArray));
 }
 // Validation for Create User
-function validation(element) {
+function validation(element){
     let trueArray = [];
     let isAllValidationPassed = true;
-    element.forEach(e => {
-        genericTextboxValidator(e, trueArray);
+    element.forEach(function (e, index){
+        genericTextboxValidator(e,index, trueArray);
     });
     for (let i = 0; i < objectDetailUser.length; i++) {
         if (element[0].value === objectDetailUser[i].username) {
@@ -239,15 +246,26 @@ function validation(element) {
     return isAllValidationPassed;
 }
 function checkBoolean(elem) {
-    return elem === true;
-    
+    return elem === true;    
 }
-function genericTextboxValidator(input, trueArray) {
+function genericTextboxValidator(input,index, trueArray) {
+    debugger;
     let isValid = true;
     if (input.value.trim() === "") {
         input.classList.add("validateRedBorder")
         input.classList.remove("validateGreenBorder")
         isValid = false;
+    }
+    else if (input.type === "number") {
+        if (input.value.length !== 10) {
+          input.classList.remove('validateGreenBorder');
+          input.classList.add("validateRedBorder");
+          isValid = false;
+        }
+        else {
+            input.classList.remove("validateRedBorder");
+            input.classList.add('validateGreenBorder');
+        }
     }
     else {
         input.classList.add("validateGreenBorder")
@@ -260,7 +278,15 @@ function genericTextboxValidator(input, trueArray) {
 function resetValue(newUserInputValue) {
     for (i = 0; i < newUserInputValue.length; i++) {
         newUserInputValue[i].value = "";
+        newUserInputValue[i].classList.remove("validateGreenBorder");
+        document.getElementById("textIfFailForPopupCreate").style.display = "none";
     }
     markContainer.style.display = "none";
     myProfileDiv.style.display = "none";
 }
+// PopUp Close Button Click event
+closeDynamic.addEventListener("click", function () {
+    markContainer.style.display = "none";
+    let newUserInputValue = document.querySelectorAll(".createUserInputData");
+    resetValue(newUserInputValue);
+});
